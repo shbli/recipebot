@@ -23,6 +23,31 @@ class RecipeIngredientSerializer(serializers.ModelSerializer):
         fields = ('ingredient', 'amount', 'unit')
 
 
+class RecipeSummarySerializer(serializers.HyperlinkedModelSerializer):
+    url = serializers.HyperlinkedIdentityField(
+        view_name='recipe-detail',
+        lookup_field='slug'
+    )
+
+    class Meta:
+        model = models.Recipe
+        fields = (
+            'name', 'description', 'cooking_instructions', 'preparation_time', 'cooking_time', 'category', 'course',
+            'cuisine', 'created', 'modified', 'url')
+        read_only_fields = ['created', 'modified']
+        extra_kwargs = {
+            'course': {
+                'lookup_field': 'slug'
+            },
+            'cuisine': {
+                'lookup_field': 'slug'
+            },
+            'category': {
+                'lookup_field': 'slug'
+            }
+        }
+        lookup_field = 'slug'
+
 class RecipeSerializer(serializers.HyperlinkedModelSerializer):
     url = serializers.HyperlinkedIdentityField(
         view_name='recipe-detail',

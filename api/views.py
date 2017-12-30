@@ -30,6 +30,13 @@ class RecipeViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.RecipeSerializer
     lookup_field = 'slug'
 
+    def get_serializer(self, *args, **kwargs):
+        if self.action == 'list':
+            kwargs['context'] = self.get_serializer_context()
+            return serializers.RecipeSummarySerializer(*args, **kwargs)
+
+        return super().get_serializer(*args, **kwargs)
+
 
 class CategoryViewSet(viewsets.ModelViewSet):
     """
