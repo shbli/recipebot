@@ -24,6 +24,9 @@ class RecipeIngredientSerializer(serializers.ModelSerializer):
 
 
 class RecipeSummarySerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Generates a summary variant of the recipe model
+    """
     url = serializers.HyperlinkedIdentityField(
         view_name='recipe-detail',
         lookup_field='slug'
@@ -48,7 +51,11 @@ class RecipeSummarySerializer(serializers.HyperlinkedModelSerializer):
         }
         lookup_field = 'slug'
 
+
 class RecipeSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    A serializer for a full recipe
+    """
     url = serializers.HyperlinkedIdentityField(
         view_name='recipe-detail',
         lookup_field='slug'
@@ -59,8 +66,8 @@ class RecipeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Recipe
         fields = (
-        'name', 'description', 'cooking_instructions', 'preparation_time', 'cooking_time', 'category', 'course',
-        'cuisine', 'ingredients', 'created','modified','url')
+            'name', 'description', 'cooking_instructions', 'preparation_time', 'cooking_time', 'category', 'course',
+            'cuisine', 'ingredients', 'created', 'modified', 'url')
         read_only_fields = ['created', 'modified']
         extra_kwargs = {
             'course': {

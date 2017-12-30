@@ -4,7 +4,7 @@ from . import models
 from . import serializers
 
 
-class RecipeViewSet(viewsets.ModelViewSet):
+class RecipeViewSet(viewsets.ReadOnlyModelViewSet):
     """
     This endpoint provides access to recipes
 
@@ -13,18 +13,6 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     retrieve:
     Retrieves a single recipe
-
-    create:
-    Stores a new recipe
-
-    destroy:
-    Removes an existing recipe
-
-    update:
-    Updates an existing recipe
-
-    partial_update:
-    Updates specific fields on an existing recipe
     """
     queryset = models.Recipe.objects.all()
     serializer_class = serializers.RecipeSerializer
@@ -38,7 +26,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         return super().get_serializer(*args, **kwargs)
 
 
-class CategoryViewSet(viewsets.ModelViewSet):
+class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     """
     This endpoint provides access to categories.
 
@@ -47,26 +35,13 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
     list:
     Retrieves all possible categories
-
-    create:
-    Stores a new category
-
-    destroy:
-    Removes a category
-
-    update:
-    Updates an existing category
-
-    partial_update:
-    Updates specific fields of an existing category
-
     """
     queryset = models.Category.objects.all()
     serializer_class = serializers.CategorySerializer
     lookup_field = 'slug'
 
 
-class CuisineViewSet(viewsets.ModelViewSet):
+class CuisineViewSet(viewsets.ReadOnlyModelViewSet):
     """
     This endpoint provides access to cuisines
 
@@ -75,25 +50,13 @@ class CuisineViewSet(viewsets.ModelViewSet):
 
     retrieve:
     Retrieves a single cuisine
-
-    create:
-    Stores a new cuisine
-
-    destroy:
-    Removes an existing cuisine
-
-    update:
-    Updates an existing cuisine
-
-    partial_update:
-    Updates specific fields on an existing cuisine
     """
     queryset = models.Cuisine.objects.all()
     serializer_class = serializers.CuisineSerializer
     lookup_field = 'slug'
 
 
-class CourseViewSet(viewsets.ModelViewSet):
+class CourseViewSet(viewsets.ReadOnlyModelViewSet):
     """
     This endpoint provides access to course
 
@@ -102,18 +65,6 @@ class CourseViewSet(viewsets.ModelViewSet):
 
     retrieve:
     Retrieves a single course
-
-    create:
-    Stores a new course
-
-    destroy:
-    Removes an existing course
-
-    update:
-    Updates an existing course
-
-    partial_update:
-    Updates specific fields on an existing course
     """
     queryset = models.Course.objects.all()
     serializer_class = serializers.CourseSerializer
