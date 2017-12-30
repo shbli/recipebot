@@ -112,7 +112,7 @@ class RecipeIngredient(models.Model):
     amount = models.IntegerField()
     unit = models.ForeignKey(Measurement, on_delete=models.PROTECT)
     ingredient = models.ForeignKey(Ingredient, on_delete=models.PROTECT)
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='ingredients')
 
     def __str__(self):
         return '{} {} {}'.format(self.amount, self.unit, self.ingredient.name)
